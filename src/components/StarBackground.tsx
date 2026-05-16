@@ -7,10 +7,20 @@ import { Points, PointMaterial, Preload } from "@react-three/drei";
 import * as random from "maath/random/dist/maath-random.esm";
 
 const StarBackground = (props: any) => {
-  const ref: any = useRef();
-  const [sphere] = useState(() =>
-    random.inSphere(new Float32Array(5000), { radius: 1.2 })
-  );
+  const ref: any = useRef(null);
+  const [sphere] = useState(() => {
+    const points = new Float32Array(5001);
+    try {
+      random.inSphere(points, { radius: 1.2 });
+      // Filter out any NaN values just in case
+      for (let i = 0; i < points.length; i++) {
+        if (isNaN(points[i])) points[i] = 0;
+      }
+    } catch (e) {
+      console.error("Error generating stars:", e);
+    }
+    return points;
+  });
 
   useFrame((state, delta) => {
     ref.current.rotation.x -= delta / 10;

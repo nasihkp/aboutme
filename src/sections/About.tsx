@@ -3,6 +3,8 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { User, Code, Shield, Rocket } from "lucide-react";
+import Image from "next/image";
+
 
 const features = [
   {
@@ -70,9 +72,15 @@ const About = () => {
               viewport={{ once: true }}
               className="aspect-square rounded-3xl overflow-hidden glass-morphism p-2"
             >
-               <div className="w-full h-full bg-gradient-to-br from-primary/20 via-secondary/10 to-accent/20 rounded-2xl flex items-center justify-center relative group">
-                  <User size={160} className="text-white/20 group-hover:text-neon-blue transition-colors duration-500" />
+               <div className="w-full h-full rounded-2xl overflow-hidden relative group">
+                  <Image
+                    src="/profile.png"
+                    alt="Muhammed Nasih K P"
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
                   <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:20px_20px]" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent" />
                </div>
             </motion.div>
             
